@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>HandwritingLab</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>✍ HandwritingLab</h1>
+    <p class="sub">Recognise handwriting in your browser — works with mouse or finger.</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="numbers">✍ Numbers</button>
+    <button class="tab" data-tab="letters">🔤 Letter</button>
+    <button class="tab" data-tab="calc">🧮 Calculator</button>
+    <button class="tab" data-tab="ocr">📄 Read Text</button>
+    <button class="tab" data-tab="writer">🧑 Who Wrote It?</button>
+    <button class="tab" data-tab="signature">✒ Signature</button>
+  </nav>
+
+  <main>
+    <!-- Numbers -->
+    <section id="numbers" class="panel active">
+      <p class="hint">Draw one or more digits (leave gaps between them).</p>
+      <div class="padwrap"><canvas class="pad" width="280" height="280"></canvas></div>
+      <div class="controls">
+        <button class="primary" data-action="number">Recognise</button>
+        <button data-action="clear">Clear</button>
+      </div>
+      <div class="result"><div class="big"></div><div class="detail"></div></div>
+    </section>
+
+    <!-- Letters -->
+    <section id="letters" class="panel">
+      <p class="hint">Draw a single letter. Lowercase only where it looks different from the capital.</p>
+      <div class="padwrap"><canvas class="pad" width="280" height="280"></canvas></div>
+      <div class="controls">
+        <button class="primary" data-action="letter">Recognise</button>
+        <button data-action="clear">Clear</button>
+      </div>
+      <div class="result"><div class="big"></div><div class="detail"></div></div>
+    </section>
+
+    <!-- Calculator -->
+    <section id="calc" class="panel">
+      <p class="hint">Draw a sum, e.g. <b>7+3</b>. Use + &nbsp; - &nbsp; × (cross) &nbsp; / (slash).</p>
+      <div class="padwrap"><canvas class="pad" width="280" height="280"></canvas></div>
+      <div class="controls">
+        <button class="primary" data-action="calc">Calculate</button>
+        <button data-action="clear">Clear</button>
+      </div>
+      <div class="result"><div class="big"></div><div class="detail"></div></div>
+    </section>
+
+    <!-- OCR -->
+    <section id="ocr" class="panel">
+      <p class="hint">Upload a photo of text. <span id="ocr-status"></span></p>
+      <div class="ocrmode">
+        <label><input type="radio" name="ocrmode" value="printed" checked> Printed / typed <small>(fast)</small></label>
+        <label><input type="radio" name="ocrmode" value="handwriting"> Handwriting <small>(AI — slower, first use downloads ~1.3 GB)</small></label>
+      </div>
+      <input type="file" class="file" accept="image/*">
+      <div class="controls"><button class="primary" data-action="ocr">Read text</button></div>
+      <div class="result"><pre class="ocrtext detail"></pre></div>
+    </section>
+
+    <!-- Writer ID -->
+    <section id="writer" class="panel">
+      <h3>Step 1 — enrol people</h3>
+      <label class="field">Name <input type="text" class="wname" placeholder="e.g. Alex"></label>
+      <label class="field">Samples <input type="file" class="wsamples" accept="image/*" multiple></label>
+      <div class="controls">
+        <button class="primary" data-action="writer-enroll">Add samples</button>
+        <button data-action="writer-forget">Forget all</button>
+      </div>
+      <div class="enrolled detail"></div>
+      <hr>
+      <h3>Step 2 — identify an unknown sample</h3>
+      <input type="file" class="wquery" accept="image/*">
+      <div class="controls"><button class="primary" data-action="writer-identify">Identify</button></div>
+      <div class="result"><div class="detail wresult"></div></div>
+    </section>
+
+    <!-- Signature -->
+    <section id="signature" class="panel">
+      <p class="hint">Compare a signature against known-genuine ones. <span id="sig-status"></span></p>
+      <label class="field">Genuine signatures <input type="file" class="genuine" accept="image/*" multiple></label>
+      <label class="field">Questioned signature <input type="file" class="questioned" accept="image/*"></label>
+      <div class="controls"><button class="primary" data-action="signature">Check signature</button></div>
+      <div class="result">
+        <div class="verdict big"></div>
+        <div class="detail"></div>
+        <img class="comparison" alt="">
+      </div>
+    </section>
+  </main>
+
+  <footer>Runs entirely on your computer. Not a forensic tool — important decisions need a human expert.</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>

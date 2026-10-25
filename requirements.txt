@@ -1,0 +1,26 @@
+# HandwritingLab dependencies — install with:  pip install -r requirements.txt
+#
+# Core numerics / imaging
+numpy
+pillow
+scipy
+
+# Classic ML + computer-vision feature descriptors
+scikit-learn        # SVM/RandomForest, PCA, metrics
+scikit-image        # HOG and LBP descriptors
+opencv-python       # preprocessing (binarise, deskew, moments)
+joblib              # saving/loading the signature model
+
+# Deep learning for the digit recogniser
+torch               # CPU build is fine
+
+# OCR (only needed for the "Read Text" tab)
+pytesseract         # printed text — also requires the Tesseract engine (see README)
+transformers        # handwriting reading via TrOCR (downloads a ~1.3 GB model on first use)
+
+# Web version (python web_app.py)
+flask
+python-dotenv
+
+# tkinter (the desktop window) ships with standard Python — nothing to install.
+

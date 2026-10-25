@@ -1,0 +1,8 @@
+Signature check report
+==============================
+Verdict: LIKELY FORGERY
+Genuine-probability: 0.0%
+Genuine references: 8
+Questioned file: datasets/full_forg\forgeries_5_1.png
+
+Match score 0%. Shapes/slant differ noticeably from the genuine references (see red areas) — looks like a forgery.
